@@ -1,0 +1,71 @@
+buildscript {
+    ext {
+        awsLambdaCoreVersion = "1.2.+"
+        gradleVersion = "4.8.+"
+        junitPluginVersion = "1.+"
+        junitVersion = "5.+"
+        jvmVersion = "1.8"
+        kotlinVersion = "1.+"
+        shadowPluginVersion = "2.+"
+    }
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+        classpath "org.junit.platform:junit-platform-gradle-plugin:$junitPluginVersion"
+        classpath "com.github.jengelman.gradle.plugins:shadow:$shadowPluginVersion"
+    }
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = gradleVersion
+}
+
+group "com.keithwedinger"
+version "1.0-SNAPSHOT"
+
+apply plugin: "java"
+apply plugin: "kotlin"
+// Gradle plugin to create fat/uber jar with all dependencies
+// apply plugin: "com.github.johnrengelman.shadow"
+
+sourceCompatibility = jvmVersion
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
+    compile "com.amazonaws:aws-lambda-java-core:$awsLambdaCoreVersion"
+    // compile fileTree(dir: 'jars', include: '*.jar')
+
+    // JUnit Jupiter API and TestEngine implementation
+    testCompile("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
+    testRuntime("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+}
+
+compileKotlin {
+    kotlinOptions.jvmTarget = jvmVersion
+}
+
+compileTestKotlin {
+    kotlinOptions.jvmTarget = jvmVersion
+}
+
+test {
+    useJUnitPlatform()
+}
+
+task buildZip(type: Zip) {
+    from compileJava
+    from processResources
+    into('lib') {
+        from configurations.compile
+    }
+}
+
+build.dependsOn buildZip
