@@ -29,7 +29,7 @@ version "1.0-SNAPSHOT"
 apply plugin: "java"
 apply plugin: "kotlin"
 // Gradle plugin to create fat/uber jar with all dependencies
-// apply plugin: "com.github.johnrengelman.shadow"
+apply plugin: "com.github.johnrengelman.shadow"
 
 sourceCompatibility = jvmVersion
 
@@ -41,7 +41,6 @@ repositories {
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
     compile "com.amazonaws:aws-lambda-java-core:$awsLambdaCoreVersion"
-    // compile fileTree(dir: 'jars', include: '*.jar')
 
     // JUnit Jupiter API and TestEngine implementation
     testCompile("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
@@ -60,12 +59,4 @@ test {
     useJUnitPlatform()
 }
 
-task buildZip(type: Zip) {
-    from compileJava
-    from processResources
-    into('lib') {
-        from configurations.compile
-    }
-}
-
-build.dependsOn buildZip
+build.dependsOn shadowJar
