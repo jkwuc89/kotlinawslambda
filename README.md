@@ -27,16 +27,6 @@ mvn clean package
 
 ## AWS CLI Commands
 
-### Update function
-Replace `<deployment package>` below with the output of the appropriate build
-deployment package command above.
-```bash
-aws lambda update-function-code \
-  --function-name KotlinAWSLambda \
-  --zip-file fileb:<deployment package> \
-  --profile default
-```
-
 ### Execute function
 ```bash
 aws lambda invoke \
