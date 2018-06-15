@@ -5,9 +5,11 @@ buildscript {
         junitPluginVersion = "1.+"
         junitVersion = "5.+"
         jvmVersion = "1.8"
-        kotlinVersion = "1.+"
+        khttpVersion = "0.1.0"
+        kotlinVersion = "1.2.41"
         shadowPluginVersion = "2.+"
     }
+
     repositories {
         mavenCentral()
         jcenter()
@@ -41,6 +43,7 @@ repositories {
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
     compile "com.amazonaws:aws-lambda-java-core:$awsLambdaCoreVersion"
+    compile "khttp:khttp:$khttpVersion"
 
     // JUnit Jupiter API and TestEngine implementation
     testCompile("org.junit.jupiter:junit-jupiter-api:${junitVersion}")

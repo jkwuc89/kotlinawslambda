@@ -9,8 +9,16 @@
 
     <properties>
         <awsLambdaCoreVersion>1.2.0</awsLambdaCoreVersion>
-        <kotlinVersion>1.2.41</kotlinVersion>
+        <khttpVersion>0.1.0</khttpVersion>
+        <kotlinVersion>1.2.50</kotlinVersion>
     </properties>
+
+    <repositories>
+        <repository>
+            <id>jcenter</id>
+            <url>https://jcenter.bintray.com/</url>
+        </repository>
+    </repositories>
 
     <dependencies>
         <dependency>
@@ -18,11 +26,15 @@
             <artifactId>kotlin-stdlib-jdk8</artifactId>
             <version>${kotlinVersion}</version>
         </dependency>
-
         <dependency>
             <groupId>com.amazonaws</groupId>
             <artifactId>aws-lambda-java-core</artifactId>
             <version>${awsLambdaCoreVersion}</version>
+        </dependency>
+        <dependency>
+            <groupId>khttp</groupId>
+            <artifactId>khttp</artifactId>
+            <version>${khttpVersion}</version>
         </dependency>
     </dependencies>
 
