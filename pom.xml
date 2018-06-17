@@ -9,8 +9,9 @@
 
     <properties>
         <awsLambdaCoreVersion>1.2.0</awsLambdaCoreVersion>
+        <gsonVersion>2.8.5</gsonVersion>
         <khttpVersion>0.1.0</khttpVersion>
-        <kotlinVersion>1.2.50</kotlinVersion>
+        <kotlinVersion>1.2.41</kotlinVersion>
     </properties>
 
     <repositories>
@@ -30,6 +31,11 @@
             <groupId>com.amazonaws</groupId>
             <artifactId>aws-lambda-java-core</artifactId>
             <version>${awsLambdaCoreVersion}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>${gsonVersion}</version>
         </dependency>
         <dependency>
             <groupId>khttp</groupId>

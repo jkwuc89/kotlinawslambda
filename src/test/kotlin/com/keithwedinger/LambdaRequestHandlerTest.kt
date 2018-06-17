@@ -11,7 +11,7 @@ class LambdaRequestHandlerTest {
     private var testHandler = LambdaRequestHandler()
 
     @Test
-    internal fun testGetBreweryInfo() {
-        testHandler.getBreweryInfo()
+    internal fun testCreateNewTask() {
+        testHandler.createNewTask(NewTaskRequest("Test Task", "Assignee"))
     }
 }

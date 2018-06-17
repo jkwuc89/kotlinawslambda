@@ -2,6 +2,7 @@ buildscript {
     ext {
         awsLambdaCoreVersion = "1.2.+"
         gradleVersion = "4.8.+"
+        gsonVersion = "2.8.+"
         junitPluginVersion = "1.+"
         junitVersion = "5.+"
         jvmVersion = "1.8"
@@ -43,6 +44,7 @@ repositories {
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
     compile "com.amazonaws:aws-lambda-java-core:$awsLambdaCoreVersion"
+    compile "com.google.code.gson:gson:$gsonVersion"
     compile "khttp:khttp:$khttpVersion"
 
     // JUnit Jupiter API and TestEngine implementation
