@@ -10,6 +10,7 @@
     <properties>
         <awsLambdaCoreVersion>1.2.0</awsLambdaCoreVersion>
         <gsonVersion>2.8.5</gsonVersion>
+        <junitVersion>5.2.0</junitVersion>
         <khttpVersion>0.1.0</khttpVersion>
         <kotlinVersion>1.2.41</kotlinVersion>
     </properties>
@@ -41,6 +42,18 @@
             <groupId>khttp</groupId>
             <artifactId>khttp</artifactId>
             <version>${khttpVersion}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>${junitVersion}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>${junitVersion}</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
