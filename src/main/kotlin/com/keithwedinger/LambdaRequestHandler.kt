@@ -22,7 +22,7 @@ class LambdaRequestHandler : RequestHandler<NewTaskRequest, Task> {
 
     override fun handleRequest(newTaskRequest: NewTaskRequest, context: Context): Task {
         logger = context.logger
-        logger!!.log("Handling incoming task request. Input: $newTaskRequest")
+        logger?.log("handleRequest: Handling incoming task request. Input: $newTaskRequest")
         val newTask = createNewTask(newTaskRequest)
         return postNewTask(newTask)!!
     }
@@ -32,6 +32,7 @@ class LambdaRequestHandler : RequestHandler<NewTaskRequest, Task> {
      */
     fun createNewTask(newTaskRequest: NewTaskRequest): Task {
         val newTaskDueDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+        logger?.log("createNewTask: Creating new task with dueDate ${newTaskDueDate}")
         return Task(name = newTaskRequest.name, assignedTo = newTaskRequest.assignedTo, dueDate = newTaskDueDate)
     }
 
@@ -40,12 +41,14 @@ class LambdaRequestHandler : RequestHandler<NewTaskRequest, Task> {
      */
     private fun postNewTask(newTask: Task): Task? {
         val newTaskPayload = JSONObject(newTask)
+        logger?.log("postNewTask: Posting ${newTask} to ${TASKTRACKER_API_URL}")
         val newTaskResponse = khttp.post(TASKTRACKER_API_URL, json = newTaskPayload)
         return if (newTaskResponse.statusCode == 200) {
+            logger?.log("postNewTask: Post successful. Response = ${newTaskResponse.text}")
             val gson = Gson()
             gson.fromJson(newTaskResponse.text, Task::class.java)
         } else {
-            logger!!.log("*** ERROR ***: Posting new task failed with status code ${newTaskResponse.statusCode}")
+            logger?.log("*** ERROR ***: Posting new task failed with status code ${newTaskResponse.statusCode}")
             null
         }
     }
