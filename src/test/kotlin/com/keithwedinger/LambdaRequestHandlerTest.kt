@@ -1,6 +1,9 @@
 package com.keithwedinger
 
+import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 /**
  * Tests for LambdaRequestHandler
@@ -12,6 +15,10 @@ class LambdaRequestHandlerTest {
 
     @Test
     internal fun testCreateNewTask() {
-        testHandler.createNewTask(NewTaskRequest("Test Task", "Assignee"))
+        val expectedNewTaskDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+        val newTask = testHandler.createNewTask(NewTaskRequest("Test Task", "Assignee"))
+        Assertions.assertEquals("Test Task", newTask.name)
+        Assertions.assertEquals("Assignee", newTask.assignedTo)
+        Assertions.assertEquals(expectedNewTaskDate, newTask.dueDate)
     }
 }
