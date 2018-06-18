@@ -7,6 +7,6 @@ package com.keithwedinger
  * Created On: 3/8/18
  */
 data class NewTaskRequest (
-    val name: String = "",
-    val assignedTo: String = ""
+    var name: String = "",
+    var assignedTo: String = ""
 )
