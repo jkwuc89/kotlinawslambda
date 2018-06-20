@@ -22,7 +22,7 @@ class LambdaRequestHandler : RequestHandler<NewTaskRequest, Task> {
 
     override fun handleRequest(newTaskRequest: NewTaskRequest, context: Context): Task {
         logger = context.logger
-        logger?.log("handleRequest: Handling incoming task request. Input: $newTaskRequest")
+        logger?.log("handleRequest: Handling new task request. Input: $newTaskRequest")
         val newTask = createNewTask(newTaskRequest)
         return postNewTask(newTask)!!
     }
