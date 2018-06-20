@@ -27,3 +27,6 @@ src/main/resources/public
 *.iws
 *.iml
 *.ipr
+
+### AWS CLI output
+outputfile.txt
