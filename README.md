@@ -27,13 +27,21 @@ mvn clean package
 
 ## AWS CLI Commands
 
+### Upload/update function
+```bash
+aws lambda update-function-code \
+  --function-name KotlinAWSLambda \
+  --zip-file fileb://build/distribution/kotlinawslambda-dist-1.0-SNAPSHOT.zip \
+  --profile default
+```
+
 ### Execute function
 ```bash
 aws lambda invoke \
-   --invocation-type RequestResponse \
-   --function-name KotlinAWSLambda \
-   --log-type Tail \
-   --payload '{"id":"1"}' \
-   --profile default \
-   outputfile.txt
+  --invocation-type RequestResponse \
+  --function-name KotlinAWSLambda \
+  --log-type Tail \
+  --payload '{"name":"New Task Request", "assignedTo": "me"}' \
+  --profile default \
+  outputfile.txt
 ```
