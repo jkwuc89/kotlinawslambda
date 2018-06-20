@@ -18,7 +18,6 @@ buildscript {
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
         classpath "org.junit.platform:junit-platform-gradle-plugin:$junitPluginVersion"
-        classpath "com.github.jengelman.gradle.plugins:shadow:$shadowPluginVersion"
     }
 }
 
@@ -31,8 +30,6 @@ version "1.0-SNAPSHOT"
 
 apply plugin: "java"
 apply plugin: "kotlin"
-// Gradle plugin to create fat/uber jar with all dependencies
-apply plugin: "com.github.johnrengelman.shadow"
 
 sourceCompatibility = jvmVersion
 
@@ -64,4 +61,15 @@ test {
     useJUnitPlatform()
 }
 
-build.dependsOn shadowJar
+// Build a distribution ZIP containing all of the dependencies
+task buildDist(type: Zip) {
+    appendix = "dist"
+    from sourceSets.main.output
+    from configurations.runtimeClasspath.findAll {
+        it.name.endsWith("jar")
+    }.collect {
+        zipTree(it)
+    }
+}
+
+build.dependsOn buildDist
