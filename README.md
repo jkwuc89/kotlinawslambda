@@ -14,13 +14,13 @@ This repository serves as the demo app for my presentation,
   
 ## Build Deployment Package
 ### Gradle
-Outputs `kotlinawslambda-1.0-SNAPSHOT-all.jar` to build/libs subdirectory
+Outputs `kotlinawslambda-dist-1.0-SNAPSHOT.zip` to build/distributions subdirectory
 ```bash
 ./gradlew clean build
 ```
 
 ### Maven
-Outputs `kotlinawslambda-1.0-SNAPSHOT.jar` to target subdirectory
+Outputs `kotlinawslambda-dist-1.0-SNAPSHOT.zip` to target/distributions subdirectory
 ```bash
 mvn clean package
 ```
@@ -28,10 +28,11 @@ mvn clean package
 ## AWS CLI Commands
 
 ### Upload/update function
+Replace `<distribution zip>` below with the output of one of the build commands above.
 ```bash
 aws lambda update-function-code \
   --function-name KotlinAWSLambda \
-  --zip-file fileb://build/distribution/kotlinawslambda-dist-1.0-SNAPSHOT.zip \
+  --zip-file fileb://<distribution zip> \
   --profile default
 ```
 
