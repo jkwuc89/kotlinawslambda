@@ -20,6 +20,9 @@ class LambdaRequestHandler : RequestHandler<NewTaskRequest, Task> {
     // val LOCAL_TASKTRACKER_API_URL = "http://localhost:8080/api/tasks"
     private var logger: LambdaLogger? = null
 
+    /**
+     * Request handler entry point for the AWS Lambda function
+     */
     override fun handleRequest(newTaskRequest: NewTaskRequest, context: Context): Task {
         logger = context.logger
         logger?.log("handleRequest: Handling new task request. Input: $newTaskRequest")
