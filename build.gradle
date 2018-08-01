@@ -1,13 +1,13 @@
 buildscript {
     ext {
         awsLambdaCoreVersion = "1.2.+"
-        gradleVersion = "4.8.+"
+        gradleVersion = "4.9.+"
         gsonVersion = "2.8.+"
         junitPluginVersion = "1.+"
         junitVersion = "5.+"
         jvmVersion = "1.8"
         khttpVersion = "0.1.0"
-        kotlinVersion = "1.2.41"
+        kotlinVersion = "1.2.60"
         shadowPluginVersion = "2.+"
     }
 
