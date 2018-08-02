@@ -1,7 +1,6 @@
 buildscript {
     ext {
         awsLambdaCoreVersion = "1.2.+"
-        gradleVersion = "4.9.+"
         gsonVersion = "2.8.+"
         junitPluginVersion = "1.+"
         junitVersion = "5.+"
@@ -19,10 +18,6 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
         classpath "org.junit.platform:junit-platform-gradle-plugin:$junitPluginVersion"
     }
-}
-
-task wrapper(type: Wrapper) {
-    gradleVersion = gradleVersion
 }
 
 group "com.keithwedinger"
