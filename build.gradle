@@ -6,7 +6,7 @@ buildscript {
         junitVersion = "5.+"
         jvmVersion = "1.8"
         khttpVersion = "0.1.0"
-        kotlinVersion = "1.2.60"
+        kotlinVersion = "1.2.+"
         shadowPluginVersion = "2.+"
     }
 
